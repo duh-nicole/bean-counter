@@ -56,8 +56,9 @@ $statement3->closeCursor();
         <h2>Workshops</h2>
         <nav aria-label="Workshop list navigation">
         <ul>
-            <?php foreach ($categories as $category) : ?>
-            <li><a href=".?category_id=<?php echo $category['categoryID']; ?>">
+            <?php foreach ($categories as $category) :
+                $is_current = ($category['categoryID'] == $category_id) ? 'aria-current="page"' : ''; ?>
+            <li><a href=".?category_id=<?php echo $category['categoryID']; ?>" <?php echo $is_current; ?>>
                     <?php echo $category['categoryName']; ?>
                 </a>
             </li>
@@ -66,17 +67,17 @@ $statement3->closeCursor();
         </nav>
     </aside>
 
-    <section>
-        <h2><?php echo $category_name; ?></h2>
+    <section aria-labelledby="section-heading">
+        <h2 id="section-heading"><?php echo $category_name; ?></h2>
         <table>
             <caption>Project List for <?php echo $category_name; ?></caption>
             <thead>
                 <tr>
-                    <th>Identifier</th>
-                    <th>Project Name</th>
-                    <th class="right">Price</th>
-                    <th>Description</th>
-                    <th colspan="2" class="sr-only">Actions</th>
+                    <th scope="col">Identifier</th>
+                    <th scope="col">Project Name</th>
+                    <th scope="col" class="right">Price</th>
+                    <th scope="col">Description</th>
+                    <th scope="colgroup" colspan="2" class="sr-only">Actions</th>
                 </tr>
             </thead>
             <tbody>
