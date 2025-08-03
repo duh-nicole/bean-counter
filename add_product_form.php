@@ -15,7 +15,10 @@ $statement->closeCursor();
 
 <head>
     <title>CodeLatte's Studio Inventory</title>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -71,3 +74,4 @@ $statement->closeCursor();
     </footer>
 </body>
 </html>
+
