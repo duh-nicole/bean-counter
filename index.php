@@ -1,3 +1,4 @@
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <?php
 require_once('database.php');
 
@@ -49,12 +50,12 @@ $statement3->closeCursor();
 
 <!-- the body section -->
 <body>
-<header><h1>Product Manager</h1></header>
-<main>
+<header><h1>inventory.grounds</h1></header>
+<main id="main-content">
     <h1>Product List</h1>
 
     <aside>
-        <!-- display a list of categories -->
+        <!-- display as list of categories -->
         <h2>Categories</h2>
         <nav>
         <ul>
@@ -69,9 +70,11 @@ $statement3->closeCursor();
     </aside>
 
     <section>
-        <!-- display a table of products -->
+        <!-- display as a table -->
         <h2><?php echo $category_name; ?></h2>
         <table>
+          <caption>Product List for Selected Category</caption>
+
             <tr>
                 <th>Code</th>
                 <th>Name</th>
@@ -92,7 +95,7 @@ $statement3->closeCursor();
                             value="<?php echo $product['productID']; ?>">
                         <input type="hidden" name="category_id"
                             value="<?php echo $product['categoryID']; ?>">
-                        <input type="submit" value="Modify">
+                        <input type="submit" value="Modify" aria-label="Modify product">
                     </form>
             </td>
                                   
@@ -101,7 +104,7 @@ $statement3->closeCursor();
                            value="<?php echo $product['productID']; ?>">
                     <input type="hidden" name="category_id"
                            value="<?php echo $product['categoryID']; ?>">
-                    <input type="submit" value="Delete">
+                    <input type="submit" value="Delete" aria-label="Delete product">
                     </form>
                 </td>
             </tr>
@@ -115,4 +118,5 @@ $statement3->closeCursor();
     <p>&copy; <?php echo date("Y"); ?> My Guitar Shop, Inc.</p>
 </footer>
 </body>
+
 </html>
