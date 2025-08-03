@@ -1,7 +1,7 @@
 <?php
     $dsn = 'mysql:host=localhost;dbname=my_guitar_shop2';
-    $username = 'mgs_user';
-    $password = 'pa55word';
+    $username = 'root';
+    $password = '';
 
     try {
         $db = new PDO($dsn, $username, $password);
@@ -10,4 +10,5 @@
         include('database_error.php');
         exit();
     }
+
 ?>
