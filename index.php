@@ -100,7 +100,8 @@ $statement3->closeCursor();
                     </form>
                 </td>
                 <td>
-                    <form action="delete_product.php" method="post">
+                    <form action="delete_product.php" method="post"
+                          onsubmit="return confirm('Are you sure you want to delete this project?');">
                         <input type="hidden" name="product_id"
                             value="<?php echo $product['productID']; ?>">
                         <input type="hidden" name="category_id"
@@ -121,4 +122,5 @@ $statement3->closeCursor();
 </footer>
 </body>
 </html>
+
 
