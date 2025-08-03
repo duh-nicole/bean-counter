@@ -1,6 +1,6 @@
 🗂️ Inventory Grounds
 
-A cozy little product manager brewed for simplicity.
+
 ☕ Overview
 
 Inventory Grounds is a lightweight PHP + MySQL application for managing product listings by category. Designed with clarity in mind, it allows users to:
