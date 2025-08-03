@@ -12,9 +12,9 @@ if ($product_id != FALSE && $category_id != FALSE) {
     $statement = $db->prepare($query);
     $statement->bindValue(':product_id', $product_id);
     $success = $statement->execute();
-    $statement->closeCursor();    
+    $statement->closeCursor();
 }
 
-// Display the Product List page
-
-include('index.php');
+// Redirect back to the Product List page after the deletion is complete
+header("Location: index.php?category_id=$category_id");
+exit;
