@@ -1,5 +1,7 @@
 <?php
 require('database.php');
+
+// Fetch all categories for the dropdown menu
 $query = 'SELECT *
           FROM categories
           ORDER BY categoryID';
@@ -9,49 +11,63 @@ $categories = $statement->fetchAll();
 $statement->closeCursor();
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
-<!-- the head section -->
 <head>
-    <title>My Guitar Shop</title>
+    <title>CodeLatte's Studio Inventory</title>
     <link rel="stylesheet" href="main.css">
 </head>
 
-<!-- the body section -->
 <body>
-    <header><h1>Product Manager</h1></header>
+    <header><h1>Softstack Studios</h1></header>
 
     <main>
-        <h1>Add Product</h1>
+        <a href="#add_product_form" class="skip-link sr-only">Skip to form</a>
+        <h1 id="form-heading">Add a New Project</h1>
         <form action="add_product.php" method="post"
-              id="add_product_form">
+              id="add_product_form" aria-labelledby="form-heading">
 
-            <label>Category:</label>
-            <select name="category_id">
-            <?php foreach ($categories as $category) : ?>
-                <option value="<?php echo $category['categoryID']; ?>">
-                    <?php echo $category['categoryName']; ?>
-                </option>
-            <?php endforeach; ?>
-            </select><br>
+            <fieldset>
+                <legend class="sr-only">New Project Details</legend>
+                
+                <div>
+                    <label for="category_id">Workshop:</label>
+                    <select name="category_id" id="category_id">
+                        <?php foreach ($categories as $category) : ?>
+                            <option value="<?php echo $category['categoryID']; ?>">
+                                <?php echo $category['categoryName']; ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
 
-            <label>Code:</label>
-            <input type="text" name="code"><br>
+                <div>
+                    <label for="code">Identifier (Code):</label>
+                    <input type="text" id="code" name="code" required>
+                </div>
 
-            <label>Name:</label>
-            <input type="text" name="name"><br>
+                <div>
+                    <label for="name">Project Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
 
-            <label>List Price:</label>
-            <input type="text" name="price"><br>
+                <div>
+                    <label for="price">List Price:</label>
+                    <input type="number" id="price" name="price" step="0.01" required>
+                </div>
 
-            <label>&nbsp;</label>
-            <input type="submit" value="Add Product"><br>
+            </fieldset>
+
+            <div class="submit-button">
+                <button type="submit">Add Project</button>
+            </div>
+
         </form>
-        <p><a href="index.php">View Product List</a></p>
+        <p><a href="index.php">View Project List</a></p>
     </main>
 
     <footer>
-        <p>&copy; <?php echo date("Y"); ?> My Guitar Shop, Inc.</p>
+        <p>&copy; <?php echo date("Y"); ?> Softstack Studios. All Rights Reserved.</p>
     </footer>
 </body>
 </html>
