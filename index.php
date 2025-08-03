@@ -1,11 +1,10 @@
-<a href="#main-content" class="skip-link">Skip to main content</a>
 <?php
 require_once('database.php');
 
 // Get category ID
 if (!isset($category_id)) {
-    $category_id = filter_input(INPUT_GET, 'category_id', 
-            FILTER_VALIDATE_INT);
+    $category_id = filter_input(INPUT_GET, 'category_id',
+        FILTER_VALIDATE_INT);
     if ($category_id == NULL || $category_id == FALSE) {
         $category_id = 1;
     }
@@ -40,24 +39,22 @@ $products = $statement3->fetchAll();
 $statement3->closeCursor();
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
-<!-- the head section -->
 <head>
-    <title>My Guitar Shop</title>
+    <title>CodeLatte's Studio Inventory</title>
     <link rel="stylesheet" href="main.css" />
 </head>
 
-<!-- the body section -->
 <body>
-<header><h1>inventory.grounds</h1></header>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<header><h1>Softstack Studios</h1></header>
 <main id="main-content">
-    <h1>Product List</h1>
+    <h1>Project List</h1>
 
     <aside>
-        <!-- display as list of categories -->
-        <h2>Categories</h2>
-        <nav>
+        <h2>Workshops</h2>
+        <nav aria-label="Workshop list navigation">
         <ul>
             <?php foreach ($categories as $category) : ?>
             <li><a href=".?category_id=<?php echo $category['categoryID']; ?>">
@@ -66,23 +63,23 @@ $statement3->closeCursor();
             </li>
             <?php endforeach; ?>
         </ul>
-        </nav>          
+        </nav>
     </aside>
 
     <section>
-        <!-- display as a table -->
         <h2><?php echo $category_name; ?></h2>
         <table>
-          <caption>Product List for Selected Category</caption>
-
-            <tr>
-                <th>Code</th>
-                <th>Name</th>
-                <th class="right">Price</th>
-                <th>Description</th><th></th>
-                <th>&nbsp;</th>
-            </tr>
-
+            <caption>Project List for <?php echo $category_name; ?></caption>
+            <thead>
+                <tr>
+                    <th>Identifier</th>
+                    <th>Project Name</th>
+                    <th class="right">Price</th>
+                    <th>Description</th>
+                    <th colspan="2" class="sr-only">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
             <?php foreach ($products as $product) : ?>
             <tr>
                 <td><?php echo $product['productCode']; ?></td>
@@ -95,28 +92,28 @@ $statement3->closeCursor();
                             value="<?php echo $product['productID']; ?>">
                         <input type="hidden" name="category_id"
                             value="<?php echo $product['categoryID']; ?>">
-                        <input type="submit" value="Modify" aria-label="Modify product">
+                        <button type="submit" aria-label="Modify <?php echo $product['productName']; ?>">Modify</button>
                     </form>
-            </td>
-                                  
-                <td><form action="delete_product.php" method="post">
-                    <input type="hidden" name="product_id"
-                           value="<?php echo $product['productID']; ?>">
-                    <input type="hidden" name="category_id"
-                           value="<?php echo $product['categoryID']; ?>">
-                    <input type="submit" value="Delete" aria-label="Delete product">
+                </td>
+                <td>
+                    <form action="delete_product.php" method="post">
+                        <input type="hidden" name="product_id"
+                            value="<?php echo $product['productID']; ?>">
+                        <input type="hidden" name="category_id"
+                            value="<?php echo $product['categoryID']; ?>">
+                        <button type="submit" aria-label="Delete <?php echo $product['productName']; ?>">Delete</button>
                     </form>
                 </td>
             </tr>
             <?php endforeach; ?>
+            </tbody>
         </table>
-        <p><a href="add_product_form.php">Add Product</a></p>
-        <p><a href="category_list.php">List Categories</a></p>        
+        <p><a href="add_product_form.php">Add a New Project</a></p>
+        <p><a href="category_list.php">Manage Workshops</a></p>
     </section>
 </main>
 <footer>
-    <p>&copy; <?php echo date("Y"); ?> My Guitar Shop, Inc.</p>
+    <p>&copy; <?php echo date("Y"); ?> Softstack Studios. All Rights Reserved.</p>
 </footer>
 </body>
-
 </html>
